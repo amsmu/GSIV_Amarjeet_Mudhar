@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Button, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, } from 'react-bootstrap';
+import MoviesPage from './containers/MoviesPageContainer';
 import Header from './Header';
 
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
       <Container>
         <Row className='row'>
           <Col xs={12}>
-            <Header content="GSIV_AMARJEET_MUDHAR"/>
+            <MoviesPage />
           </Col>
         </Row>
       </Container>
