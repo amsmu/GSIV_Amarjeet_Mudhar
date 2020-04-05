@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, } from 'react-bootstrap';
-import MoviesPage from './containers/MoviesPageContainer';
-import Header from './Header';
+import { Container, Col, Row } from 'react-bootstrap';
+import MoviesPage from './routes/Movies/containers/MoviesPageContainer';
+import MovieDetailPage from './routes/Movies/containers/MovieDetailPageContainer';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -9,7 +10,8 @@ class App extends Component {
       <Container>
         <Row className='row'>
           <Col xs={12}>
-            <MoviesPage />
+            <Route exact path='/' component={MoviesPage} />
+            <Route exact path='/:id' component={MovieDetailPage} />
           </Col>
         </Row>
       </Container>

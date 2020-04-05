@@ -1,4 +1,4 @@
-import { SAVE_SEARCH_QUERY, ACTION_SEARCH_MOVIES_SUCCESS } from '../actions';
+import { SAVE_SEARCH_QUERY, ACTION_SEARCH_MOVIES_SUCCESS, ACTION_FETCH_MOVIE_DETAILS_SUCCESS } from '../actions';
 
 const initialState = {
   search_query: '',
@@ -18,9 +18,14 @@ export default function movieSearch(state = initialState, action) {
     case ACTION_SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
-          current_page: action.params.page,
-        show_more: action.params.page!=action.params.total_pages,
+        current_page: action.params.page,
+        show_more: action.params.page !== action.params.total_pages,
         movies: action.params.is_new ? action.params.results : state.movies.concat(action.params.results),
+      };
+    case ACTION_FETCH_MOVIE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        current_movie: action.params,
       };
     default:
       return state;

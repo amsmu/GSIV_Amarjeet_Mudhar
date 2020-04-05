@@ -1,8 +1,12 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
-import { ACTION_SEARCH_MOVIES_REQUEST, actionSearchMoviesSuccess } from '../actions';
+import {
+  ACTION_SEARCH_MOVIES_REQUEST,
+  ACTION_FETCH_MOVIE_DETAILS_REQUEST,
+  actionSearchMoviesSuccess,
+  actionFetchMovieDetailsSuccess,
+} from '../actions';
 
 export function* fetchMovies(action) {
-  console.log('FETCH MOVIES SAGA', action.params);
   var page = action.params.page ? action.params.page : 1;
   const endpoint =
     action.params.query.length > 0
@@ -20,12 +24,22 @@ export function* fetchMovies(action) {
   }
 }
 
+export function* fetchMovieDetailById(action) {
+  const endpoint =
+    'https://api.themoviedb.org/3/movie/' + action.params.id + '?api_key=8c246a93f391e55281a44d1e497c682e&language=en-US';
+
+  const response = yield call(fetch, endpoint);
+  const data = yield response.json();
+  if (data) {
+    yield put(actionFetchMovieDetailsSuccess(data));
+  }
+}
+
 export function* Movies() {
-  console.log('ROOORR');
   yield takeEvery(ACTION_SEARCH_MOVIES_REQUEST, fetchMovies);
+  yield takeEvery(ACTION_FETCH_MOVIE_DETAILS_REQUEST, fetchMovieDetailById);
 }
 
 export default function* rootSaga() {
-  console.log('ROOORR');
   yield all([Movies()]);
 }

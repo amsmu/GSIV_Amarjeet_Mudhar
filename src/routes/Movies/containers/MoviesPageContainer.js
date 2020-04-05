@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import MoviesPage from '../components/MoviesPage';
-import { actionSaveSearchQuery,actionSearchMoviesRequest } from '../actions';
+import { actionSaveSearchQuery, actionSearchMoviesRequest } from '../../../modules/actions';
 
 const mapDispatchToProps = {
   actionSaveSearchQuery,
-  actionSearchMoviesRequest
+  actionSearchMoviesRequest,
 };
 
 const mapStateToProps = (state) => ({
