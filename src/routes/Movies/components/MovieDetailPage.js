@@ -27,19 +27,21 @@ class MovieDetailPage extends React.Component {
           </Navbar.Collapse>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
         </Navbar>
-        <br/>
+        <br />
         <div>
           <Row>
-            <Col xs={3}>
+            <Col xs={12} sm={4} md={3}>
               <img
                 style={{ 'max-width': '100%' }}
                 src={'https://image.tmdb.org/t/p/w500' + this.props.state.current_movie.poster_path}
               ></img>
             </Col>
-            <Col xs={9}  style={{ textAlign: 'left' }} >
+            <Col xs={12} sm={8} md={9} style={{ textAlign: 'left' }}>
               <h3>{this.props.state.current_movie.title}</h3>
-              <p>{this.props.state.current_movie.release_date} | {this.props.state.current_movie.runtime} mins</p>
-             {this.props.state.current_movie.overview}
+              <p>
+                {this.props.state.current_movie.release_date} | {this.props.state.current_movie.runtime} mins
+              </p>
+              {this.props.state.current_movie.overview}
             </Col>
           </Row>
         </div>
