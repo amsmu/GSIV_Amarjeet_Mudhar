@@ -1,12 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
-import movieApp from './reducers';
+import movieSearch from './reducers';
+import rootSaga from './sagas';
 import App from './App';
+import createSagaMiddleware from 'redux-saga';
+import './index.css'
 
-const store = createStore(movieApp, devToolsEnhancer());
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(movieSearch, compose(applyMiddleware(sagaMiddleware), devToolsEnhancer()));
+sagaMiddleware.run(rootSaga);
 
 render(
   <Provider store={store}>
